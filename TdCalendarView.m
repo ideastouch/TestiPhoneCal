@@ -31,6 +31,17 @@ const int	weekFontSize=12;
 	currentMonthDate.day=1;
 	currentSelectDate.year=0;
 	monthFlagArray=malloc(sizeof(int)*31);
+    
+    self.layer.backgroundColor = [UIColor blackColor].CGColor;
+    self.layer.cornerRadius = 5.0;
+    self.layer.masksToBounds = YES;
+    /*
+    self.layer.shadowOffset = CGSizeMake(1, 0);
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowRadius = 5;
+    self.layer.shadowOpacity = .25;
+    */
+    //[self setBackgroundColor:[UIColor clearColor]];
 	[self clearAllDayFlag];	
 }
 - (id)initWithCoder:(NSCoder *)coder {
@@ -152,9 +163,13 @@ const int	weekFontSize=12;
 -(void)drawTopBarWords{
 	int width=self.frame.size.width;
 	int s_width=width/7;
-
-	[[UIColor blackColor] set];
-	NSString *title_Month   = [[NSString alloc] initWithFormat:@"%d %d", currentMonthDate.month, currentMonthDate.year];
+    static NSString* mounthBy3Letters[] =
+    {@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec"};
+    
+    
+    
+	NSString *title_Month   = [[NSString alloc] initWithFormat:
+                               @"%@ %d", mounthBy3Letters[currentMonthDate.month-1], currentMonthDate.year];
 	
 	int fontsize=[UIFont buttonFontSize];
     UIFont   *font    = [UIFont systemFontOfSize:titleFontSize];
@@ -166,16 +181,16 @@ const int	weekFontSize=12;
 	UIFont *weekfont=[UIFont boldSystemFontOfSize:weekFontSize];
 	fontsize+=3;
 	fontsize+=20;
-	
-	[@"Lun" drawAtPoint:CGPointMake(s_width*0+9,fontsize) withFont:weekfont];
-	[@"Mar" drawAtPoint:CGPointMake(s_width*1+9,fontsize) withFont:weekfont];
-	[@"Mie" drawAtPoint:CGPointMake(s_width*2+9,fontsize) withFont:weekfont];
-	[@"Jue" drawAtPoint:CGPointMake(s_width*3+9,fontsize) withFont:weekfont];
-	[@"Vie" drawAtPoint:CGPointMake(s_width*4+9,fontsize) withFont:weekfont];
-	[[UIColor redColor] set];
-	[@"Sab" drawAtPoint:CGPointMake(s_width*5+9,fontsize) withFont:weekfont];
-	[@"Dom" drawAtPoint:CGPointMake(s_width*6+9,fontsize) withFont:weekfont];
-	[[UIColor blackColor] set];
+	[[UIColor grayColor] set];
+	[@"Sun" drawAtPoint:CGPointMake(s_width*0+9,fontsize) withFont:weekfont];
+	[@"Mon" drawAtPoint:CGPointMake(s_width*1+9,fontsize) withFont:weekfont];
+	[@"Tue" drawAtPoint:CGPointMake(s_width*2+9,fontsize) withFont:weekfont];
+	[@"Wen" drawAtPoint:CGPointMake(s_width*3+9,fontsize) withFont:weekfont];
+	[@"Thu" drawAtPoint:CGPointMake(s_width*4+9,fontsize) withFont:weekfont];
+	//[[UIColor redColor] set];
+	[@"Fri" drawAtPoint:CGPointMake(s_width*5+9,fontsize) withFont:weekfont];
+	[@"Sat" drawAtPoint:CGPointMake(s_width*6+9,fontsize) withFont:weekfont];
+	[[UIColor grayColor] set];
 	
 }
 
@@ -268,7 +283,8 @@ const int	weekFontSize=12;
 			[@"." drawAtPoint:CGPointMake(x*s_width+19,y*itemHeight+headHeight+6) withFont:[UIFont boldSystemFontOfSize:25]];
 		}
 			
-		CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+		//CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSetFillColorWithColor(ctx, [UIColor grayColor].CGColor);
 	}
 }
 

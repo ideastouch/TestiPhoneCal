@@ -44,6 +44,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+@synthesize tdCalendarView;
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -53,12 +54,14 @@
 }
 
 - (void)viewDidUnload {
+    [self setTdCalendarView:nil];
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
+    [tdCalendarView release];
     [super dealloc];
 }
 

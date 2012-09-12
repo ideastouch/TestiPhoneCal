@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TdCalendarView;
 
 @interface TestiPhoneCalViewController : UIViewController {
 
 }
+@property (retain, nonatomic) IBOutlet TdCalendarView *tdCalendarView;
 
 @end
 
